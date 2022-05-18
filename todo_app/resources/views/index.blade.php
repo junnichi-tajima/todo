@@ -62,6 +62,10 @@
       width: 80%;
       margin-left:10%;
     }
+
+    tr:nth-child(even){
+      background-color: lightgray;
+    }
   </style>
 </head>
 

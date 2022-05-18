@@ -17,11 +17,11 @@ class TaskController extends Controller
     public function add(Request $request)
     {
         $param = [
-            'content' => $reques->content,
+            'content' => $request->content,
             'updated_at' => null,
         ];
         DB::insert('insert into tasks(content,updated_at) values(:content,:updated_at)',$param);
-        return "AAAAAAAAAAAAAAAA";
+        return redirect('/');
     }
     
     public function delete(Request $request)
