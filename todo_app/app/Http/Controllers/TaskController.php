@@ -16,6 +16,10 @@ class TaskController extends Controller
     
     public function add(Request $request)
     {
+         $validate_rule = [
+             'content' => 'required|string|max:20'
+         ];
+         $this->validate($request,$validate_rule);
         $param = [
             'content' => $request->content,
             'updated_at' => null,
