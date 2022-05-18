@@ -12,7 +12,7 @@
 body {
   width: 100%;
   height: 100%;
-  background-color: blue;
+  background-color: #2d197c;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,14 +22,14 @@ body {
 }
 
 .container {
-  border-radius:  30px;
+  border-radius:  10px;
   background-color: white;
-  width: 60%;
+  width: 50vw;
   /* height:1000px; */
   /* margin: 0,auto; */
   /* display: flex; */
   /* margin-left: 20%; */
-  padding: 50px;
+  padding: 30px;
   position: absolute;
   top:50%;
   left:50%;
@@ -37,33 +37,42 @@ body {
 }
 
 .todo_form {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  justify-content: space-between
 }
 
 .todo_table {
-  clear: bothS;
-}
-
-td {
-  width: 10%;
-  height: 50px;
+  clear: both;
+  width:100%;
   text-align: center;
 }
 
-tr:nth-child(even){
+/* td {
+  width: 10%;
+  height: 50px;
+  text-align: center;
+} */
+
+/* tr:nth-child(even){
   background-color: gray;
-}
+} */
 
 button {
   /* width:200px; */
-  border-radius: 5%;
+  border-radius: 5px;
   background-color: white;
   padding: 10px
-  transition: all 0.5s 0s ease
+  transition: 0.4s;
+  cuesol: pointer;
+  outline:none;
+  padding: 8px 16px;
+  font-weight: bold;
+  font-size 12px;
 }
 
 .button-add {
-  border: 1px solid purple;
+  border: 1px solid #dc70fa;
+  color:#dc70fa
 }
 
 .button-add:hover {
@@ -72,21 +81,49 @@ button {
 }
 
 .button-update {
-  border: 1px solid orange;
+  border: 1px solid #fa9770;
+  color: #fa9770;
 }
 
 .button-update:hover {
-  background-color: orange;
+  background-color: #fa9770;
   color: white;
 }
 
 .button-delete {
-  border: 1px solid cyan;
+  border: 1px solid #71fadc;
+  font-weight: bold;
+  color:#71fadc;
 }
 
 .button-delete:hover {
-  background-color: cyan;
+  background-color: #71fadc;
   color: white;
+}
+
+.input__add__content{
+  vertical-align: middle;
+  width: 80%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: none;
+  font-size:14px;
+  outline:none;
+}
+
+.input__update__content{
+  width: 90%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: 
+  font-size:14px;
+  outline:none;
+}
+
+.table__head {
+  font-weight: bold
 }
   </style>
 </head>
@@ -102,12 +139,12 @@ button {
       <input class="input__add__content" type="text" name="content" required>
       <button class="button-add" type="submit">追加</button>
     </form>
-    <table class="todo_table" border="1">
+    <table class="todo_table">
       <tr>
-        <td class="table__head">作成日</td>
-        <td class="table__head">タスク名</td>
-        <td class="table__head">更新</td>
-        <td class="table__head">削除</td>
+        <th class="table__head">作成日</th>
+        <th class="table__head">タスク名</th>
+        <th class="table__head">更新</th>
+        <th class="table__head">削除</th>
       </tr>
  @foreach($tasks as $task)
       <form action="/delete" method="post">
@@ -118,10 +155,10 @@ button {
             <input class="input__update__content" type="text" name="content" value={{$task->content}}></td>
           <td>
             <!-- <input type="button" value="更新"> -->
-            <button class="button-update" formmethod="post" formaction="./update?id={{$task->id}}">更新</button>
+            <button class="button button-update" formmethod="post" formaction="./update?id={{$task->id}}">更新</button>
           </td>
           <td>
-            <button class="button-delete" formmethod="post" formaction="./delete?id={{$task->id}}">削除</button>
+            <button class="button button-delete" formmethod="post" formaction="./delete?id={{$task->id}}">削除</button>
           </td>
         </tr>
       </form>
