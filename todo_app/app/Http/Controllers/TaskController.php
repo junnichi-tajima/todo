@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use DateTime;
 
 class TaskController extends Controller
 {
@@ -36,10 +37,17 @@ class TaskController extends Controller
     
     public function update(Request $request)
     {
+         $validate_rule = [
+             'content' => 'required|string|max:20'
+         ];
+         $this->validate($request,$validate_rule);
+         
         $task = Task::find($request->id);
         $task->content = $request->content;
+        $date = new DateTime('Asia/Tokyo');
+        $task->updated_at = $date->format('Y-m-d H:i:s');
         $task->save();
-        // return redirect('/');
-        return $request->content;
+        return redirect('/');
+        // return $request->content;
     }
 }
